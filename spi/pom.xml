@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.example</groupId>
+        <artifactId>wirespec-demo</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>spi</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>community.flock.wirespec.integration</groupId>
+            <artifactId>spring-jvm</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>community.flock.wirespec.integration</groupId>
+            <artifactId>wirespec-jvm</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>community.flock.wirespec.plugin.maven</groupId>
+                <artifactId>wirespec-maven-plugin</artifactId>
+                <version>${wirespec.version}</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>community.flock.wirespec.integration</groupId>
+                        <artifactId>spring-jvm</artifactId>
+                        <version>${wirespec.version}</version>
+                    </dependency>
+                </dependencies>
+                <executions>
+                    <execution>
+                        <id>generate-java</id>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                        <configuration>
+                            <input>${project.basedir}/src/main/wirespec</input>
+                            <output>${project.build.directory}/generated-sources</output>
+                            <packageName>community.flock.wirespec.generated.spi.java</packageName>
+                            <shared>false</shared>
+                            <languages>
+                                <language>Java</language>
+                            </languages>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>generate-spring-kotlin</id>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                        <configuration>
+                            <input>${project.basedir}/src/main/wirespec</input>
+                            <output>${project.build.directory}/generated-sources</output>
+                            <emitterClass>community.flock.wirespec.integration.spring.kotlin.emit.SpringKotlinEmitter</emitterClass>
+                            <packageName>community.flock.wirespec.generated.spi.kotlin</packageName>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

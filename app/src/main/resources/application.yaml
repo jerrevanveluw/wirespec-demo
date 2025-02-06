@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: demo
+
+wirespec:
+  spring:
+    webclient:
+      base-url: http://localhost:8080
