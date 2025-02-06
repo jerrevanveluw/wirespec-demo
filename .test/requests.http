@@ -1,0 +1,29 @@
+GET http://localhost:8080/todos
+Accept: application/json
+
+###
+
+POST http://localhost:8080/todos
+Content-Type: application/json
+
+{
+  "title": "title input",
+  "description": "description input"
+}
+
+###
+
+PUT http://localhost:8080/todos/7d6ceefd-cef3-4f58-b3a1-5cd24539e748
+Content-Type: application/json
+
+{
+  "title": "changed title",
+  "description": "changed description"
+}
+
+###
+
+DELETE http://localhost:8080/todos/7d6ceefd-cef3-4f58-b3a1-5cd24539e748
+Content-Type: application/json
+
+###
